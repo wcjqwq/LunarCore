@@ -4,6 +4,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import emu.lunarcore.server.http.handlers.Config.GetConfigHandler;
+import io.javalin.http.Handler;
 import org.eclipse.jetty.server.HttpConfiguration;
 import org.eclipse.jetty.server.HttpConnectionFactory;
 import org.eclipse.jetty.server.SecureRequestCustomizer;
@@ -26,10 +28,10 @@ import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 public class HttpServer {
     private final Javalin app;
     private final ServerType type;
-    
+
     private List<String> modes;
     private boolean started;
-    
+
     private long nextRegionUpdate;
     private Object2ObjectMap<String, RegionInfo> regions;
     private String regionList;
@@ -71,18 +73,18 @@ public class HttpServer {
         sslContextFactory.setRenegotiationAllowed(false);
         return sslContextFactory;
     }
-    
+
     public void forceRegionListRefresh() {
         this.nextRegionUpdate = 0;
     }
-    
+
     public String getRegionList() {
         synchronized (this.regions) {
             // Check if region list needs to be cached
             if (System.currentTimeMillis() > this.nextRegionUpdate || this.regionList == null) {
                 // Clear regions first
                 this.regions.clear();
-                
+
                 // Pull region infos from database
                 LunarCore.getAccountDatabase().getObjects(RegionInfo.class)
                     .forEach(region -> {
@@ -92,13 +94,13 @@ public class HttpServer {
                 // Serialize to proto
                 DispatchRegionData regionData = DispatchRegionData.newInstance();
                 regions.values().stream().map(RegionInfo::toProto).forEach(regionData::addRegionList);
-                
+
                 // Set region list cache
                 this.regionList = Utils.base64Encode(regionData.toByteArray());
                 this.nextRegionUpdate = System.currentTimeMillis() + getServerConfig().regionListRefresh;
             }
         }
-        
+
         return regionList;
     }
 
@@ -128,36 +130,45 @@ public class HttpServer {
         if (this.getType().runDispatch()) {
             this.addDispatchRoutes();
             this.addLogServerRoutes();
+            this.addAuthRoutes();
+            this.addConfigRoutes();
+            this.addExtraRoutes();
         }
-        if (this.getType().runGame()) {
-            this.addGateServerRoutes();
-        }
+//        if (this.getType().runGame()) {
+//            this.addDispatchRoutes();
+//        }
 
         // Fallback handler
         getApp().error(404, this::notFoundHandler);
     }
-
-    private void addDispatchRoutes() {
-        // Get region info
-        getApp().get("/query_dispatch", new QueryDispatchHandler(this));
+    private void addAuthRoutes() {
+        // === AUTHENTICATION === hkrpg-sdk-os-static.hoyoverse.com
 
         // Captcha -> api-account-os.hoyoverse.com
         getApp().post("/account/risky/api/check", new HttpJsonResponse("{\"retcode\":0,\"message\":\"OK\",\"data\":{\"id\":\"none\",\"action\":\"ACTION_NONE\",\"geetest\":null}}"));
-
-        // === AUTHENTICATION === hkrpg-sdk-os-static.hoyoverse.com
-
         // Username & Password login (from client). Returns a session key to the client.
         getApp().post("/hkrpg_global/mdk/shield/api/login", new UsernameLoginHandler());
         // Cached session key verify (from registry). Returns a session key to the client.
         getApp().post("/hkrpg_global/mdk/shield/api/verify", new TokenLoginHandler());
-
         // Exchange session key for login token (combo token)
         getApp().post("/hkrpg_global/combo/granter/login/v2/login", new ComboTokenGranterHandler());
-
-        // Config
-        getApp().get("/hkrpg_global/combo/granter/api/getConfig", new HttpJsonResponse("{\"retcode\":0,\"message\":\"OK\",\"data\":{\"protocol\":true,\"qr_enabled\":false,\"log_level\":\"INFO\",\"announce_url\":\"\",\"push_alias_type\":0,\"disable_ysdk_guard\":true,\"enable_announce_pic_popup\":false,\"app_name\":\"崩�??RPG\",\"qr_enabled_apps\":{\"bbs\":false,\"cloud\":false},\"qr_app_icons\":{\"app\":\"\",\"bbs\":\"\",\"cloud\":\"\"},\"qr_cloud_display_name\":\"\",\"enable_user_center\":true,\"functional_switch_configs\":{}}}"));
+        //CN
+        getApp().post("/hkrpg_cn/mdk/shield/api/login", new UsernameLoginHandler());
+        getApp().post("/hkrpg_cn/mdk/shield/api/verify", new TokenLoginHandler());
+        getApp().post("/hkrpg_cn/combo/granter/login/v2/login", new ComboTokenGranterHandler());
+        // Add mode
+        this.modes.add("AUTH");
+    }
+    private void addConfigRoutes() {
+        // === Config ===
+        //getApp().get("/hkrpg_global/combo/granter/api/getConfig", (Handler) new GetConfigHandler());
+        getApp().get("/hkrpg_global/combo/granter/api/getConfig", new GetConfigHandler());
+            //"{\"retcode\":0,\"message\":\"OK\",\"data\":{\"protocol\":true,\"qr_enabled\":false,\"log_level\":\"INFO\",\"announce_url\":\"\",\"push_alias_type\":0,\"disable_ysdk_guard\":true,\"enable_announce_pic_popup\":false,\"app_name\":\"崩�??RPG\",\"qr_enabled_apps\":{\"bbs\":false,\"cloud\":false},\"qr_app_icons\":{\"app\":\"\",\"bbs\":\"\",\"cloud\":\"\"},\"qr_cloud_display_name\":\"\",\"enable_user_center\":true,\"functional_switch_configs\":{}}}"));
         getApp().get("/hkrpg_global/mdk/shield/api/loadConfig", new HttpJsonResponse("{\"retcode\":0,\"message\":\"OK\",\"data\":{\"id\":24,\"game_key\":\"hkrpg_global\",\"client\":\"PC\",\"identity\":\"I_IDENTITY\",\"guest\":false,\"ignore_versions\":\"\",\"scene\":\"S_NORMAL\",\"name\":\"崩�??RPG\",\"disable_regist\":false,\"enable_email_captcha\":false,\"thirdparty\":[\"fb\",\"tw\",\"gl\",\"ap\"],\"disable_mmt\":false,\"server_guest\":false,\"thirdparty_ignore\":{},\"enable_ps_bind_account\":false,\"thirdparty_login_configs\":{\"tw\":{\"token_type\":\"TK_GAME_TOKEN\",\"game_token_expires_in\":2592000},\"ap\":{\"token_type\":\"TK_GAME_TOKEN\",\"game_token_expires_in\":604800},\"fb\":{\"token_type\":\"TK_GAME_TOKEN\",\"game_token_expires_in\":2592000},\"gl\":{\"token_type\":\"TK_GAME_TOKEN\",\"game_token_expires_in\":604800}},\"initialize_firebase\":false,\"bbs_auth_login\":false,\"bbs_auth_login_ignore\":[],\"fetch_instance_id\":false,\"enable_flash_login\":false}}"));
-
+        // Add mode
+        this.modes.add("CONFIG");
+    }
+    private void addExtraRoutes() {
         // === EXTRA ===
 
         // hkrpg-sdk-os.hoyoverse.com
@@ -174,7 +185,15 @@ public class HttpServer {
 
         // abtest-api-data-sg.hoyoverse.com
         getApp().post("/data_abtest_api/config/experiment/list", new HttpJsonResponse("{\"retcode\":0,\"success\":true,\"message\":\"\",\"data\":[{\"code\":1000,\"type\":2,\"config_id\":\"14\",\"period_id\":\"6125_197\",\"version\":\"1\",\"configs\":{\"cardType\":\"direct\"}}]}"));
-    
+
+        // Add mode
+        this.modes.add("EXTRA");
+    }
+
+    private void addDispatchRoutes() {
+        // Get region info
+        getApp().get("/query_dispatch", new QueryDispatchHandler(this));
+        getApp().get("/query_gateway", new QueryGatewayHandler());
         // Add mode
         this.modes.add("DISPATCH");
     }
@@ -191,13 +210,6 @@ public class HttpServer {
         getApp().post("/common/h5log/log/batch", new HttpJsonResponse("{\"retcode\":0,\"message\":\"success\",\"data\":null}"));
     }
 
-    private void addGateServerRoutes() {
-        // Gateway info
-        getApp().get("/query_gateway", new QueryGatewayHandler());
-        
-        // Add mode
-        this.modes.add("GATESERVER");
-    }
 
     private void notFoundHandler(Context ctx) {
         ctx.status(404);
