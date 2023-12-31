@@ -11,45 +11,40 @@ import us.hebi.quickbuf.ProtoMessage;
 import us.hebi.quickbuf.ProtoSink;
 import us.hebi.quickbuf.ProtoSource;
 
-public final class ActivityScheduleInfoOuterClass {
+public final class FarmStageGachaInfoOuterClass {
   /**
-   * Protobuf type {@code ActivityScheduleInfo}
+   * Protobuf type {@code FarmStageGachaInfo}
    */
-  public static final class ActivityScheduleInfo extends ProtoMessage<ActivityScheduleInfo> implements Cloneable {
+  public static final class FarmStageGachaInfo extends ProtoMessage<FarmStageGachaInfo> implements Cloneable {
     private static final long serialVersionUID = 0L;
 
     /**
-     * <code>optional int64 end_time = 3;</code>
+     * <code>optional int64 end_time = 4;</code>
      */
     private long endTime;
 
     /**
-     * <code>optional int64 begin_time = 8;</code>
+     * <code>optional int64 begin_time = 5;</code>
      */
     private long beginTime;
 
     /**
-     * <code>optional uint32 activity_id = 1;</code>
+     * <code>optional uint32 gacha_id = 3;</code>
      */
-    private int activityId;
+    private int gachaId;
 
-    /**
-     * <code>optional uint32 module_id = 5;</code>
-     */
-    private int moduleId;
-
-    private ActivityScheduleInfo() {
+    private FarmStageGachaInfo() {
     }
 
     /**
-     * @return a new empty instance of {@code ActivityScheduleInfo}
+     * @return a new empty instance of {@code FarmStageGachaInfo}
      */
-    public static ActivityScheduleInfo newInstance() {
-      return new ActivityScheduleInfo();
+    public static FarmStageGachaInfo newInstance() {
+      return new FarmStageGachaInfo();
     }
 
     /**
-     * <code>optional int64 end_time = 3;</code>
+     * <code>optional int64 end_time = 4;</code>
      * @return whether the endTime field is set
      */
     public boolean hasEndTime() {
@@ -57,17 +52,17 @@ public final class ActivityScheduleInfoOuterClass {
     }
 
     /**
-     * <code>optional int64 end_time = 3;</code>
+     * <code>optional int64 end_time = 4;</code>
      * @return this
      */
-    public ActivityScheduleInfo clearEndTime() {
+    public FarmStageGachaInfo clearEndTime() {
       bitField0_ &= ~0x00000001;
       endTime = 0L;
       return this;
     }
 
     /**
-     * <code>optional int64 end_time = 3;</code>
+     * <code>optional int64 end_time = 4;</code>
      * @return the endTime
      */
     public long getEndTime() {
@@ -75,18 +70,18 @@ public final class ActivityScheduleInfoOuterClass {
     }
 
     /**
-     * <code>optional int64 end_time = 3;</code>
+     * <code>optional int64 end_time = 4;</code>
      * @param value the endTime to set
      * @return this
      */
-    public ActivityScheduleInfo setEndTime(final long value) {
+    public FarmStageGachaInfo setEndTime(final long value) {
       bitField0_ |= 0x00000001;
       endTime = value;
       return this;
     }
 
     /**
-     * <code>optional int64 begin_time = 8;</code>
+     * <code>optional int64 begin_time = 5;</code>
      * @return whether the beginTime field is set
      */
     public boolean hasBeginTime() {
@@ -94,17 +89,17 @@ public final class ActivityScheduleInfoOuterClass {
     }
 
     /**
-     * <code>optional int64 begin_time = 8;</code>
+     * <code>optional int64 begin_time = 5;</code>
      * @return this
      */
-    public ActivityScheduleInfo clearBeginTime() {
+    public FarmStageGachaInfo clearBeginTime() {
       bitField0_ &= ~0x00000002;
       beginTime = 0L;
       return this;
     }
 
     /**
-     * <code>optional int64 begin_time = 8;</code>
+     * <code>optional int64 begin_time = 5;</code>
      * @return the beginTime
      */
     public long getBeginTime() {
@@ -112,105 +107,67 @@ public final class ActivityScheduleInfoOuterClass {
     }
 
     /**
-     * <code>optional int64 begin_time = 8;</code>
+     * <code>optional int64 begin_time = 5;</code>
      * @param value the beginTime to set
      * @return this
      */
-    public ActivityScheduleInfo setBeginTime(final long value) {
+    public FarmStageGachaInfo setBeginTime(final long value) {
       bitField0_ |= 0x00000002;
       beginTime = value;
       return this;
     }
 
     /**
-     * <code>optional uint32 activity_id = 1;</code>
-     * @return whether the activityId field is set
+     * <code>optional uint32 gacha_id = 3;</code>
+     * @return whether the gachaId field is set
      */
-    public boolean hasActivityId() {
+    public boolean hasGachaId() {
       return (bitField0_ & 0x00000004) != 0;
     }
 
     /**
-     * <code>optional uint32 activity_id = 1;</code>
+     * <code>optional uint32 gacha_id = 3;</code>
      * @return this
      */
-    public ActivityScheduleInfo clearActivityId() {
+    public FarmStageGachaInfo clearGachaId() {
       bitField0_ &= ~0x00000004;
-      activityId = 0;
+      gachaId = 0;
       return this;
     }
 
     /**
-     * <code>optional uint32 activity_id = 1;</code>
-     * @return the activityId
+     * <code>optional uint32 gacha_id = 3;</code>
+     * @return the gachaId
      */
-    public int getActivityId() {
-      return activityId;
+    public int getGachaId() {
+      return gachaId;
     }
 
     /**
-     * <code>optional uint32 activity_id = 1;</code>
-     * @param value the activityId to set
+     * <code>optional uint32 gacha_id = 3;</code>
+     * @param value the gachaId to set
      * @return this
      */
-    public ActivityScheduleInfo setActivityId(final int value) {
+    public FarmStageGachaInfo setGachaId(final int value) {
       bitField0_ |= 0x00000004;
-      activityId = value;
-      return this;
-    }
-
-    /**
-     * <code>optional uint32 module_id = 5;</code>
-     * @return whether the moduleId field is set
-     */
-    public boolean hasModuleId() {
-      return (bitField0_ & 0x00000008) != 0;
-    }
-
-    /**
-     * <code>optional uint32 module_id = 5;</code>
-     * @return this
-     */
-    public ActivityScheduleInfo clearModuleId() {
-      bitField0_ &= ~0x00000008;
-      moduleId = 0;
-      return this;
-    }
-
-    /**
-     * <code>optional uint32 module_id = 5;</code>
-     * @return the moduleId
-     */
-    public int getModuleId() {
-      return moduleId;
-    }
-
-    /**
-     * <code>optional uint32 module_id = 5;</code>
-     * @param value the moduleId to set
-     * @return this
-     */
-    public ActivityScheduleInfo setModuleId(final int value) {
-      bitField0_ |= 0x00000008;
-      moduleId = value;
+      gachaId = value;
       return this;
     }
 
     @Override
-    public ActivityScheduleInfo copyFrom(final ActivityScheduleInfo other) {
+    public FarmStageGachaInfo copyFrom(final FarmStageGachaInfo other) {
       cachedSize = other.cachedSize;
       if ((bitField0_ | other.bitField0_) != 0) {
         bitField0_ = other.bitField0_;
         endTime = other.endTime;
         beginTime = other.beginTime;
-        activityId = other.activityId;
-        moduleId = other.moduleId;
+        gachaId = other.gachaId;
       }
       return this;
     }
 
     @Override
-    public ActivityScheduleInfo mergeFrom(final ActivityScheduleInfo other) {
+    public FarmStageGachaInfo mergeFrom(final FarmStageGachaInfo other) {
       if (other.isEmpty()) {
         return this;
       }
@@ -221,17 +178,14 @@ public final class ActivityScheduleInfoOuterClass {
       if (other.hasBeginTime()) {
         setBeginTime(other.beginTime);
       }
-      if (other.hasActivityId()) {
-        setActivityId(other.activityId);
-      }
-      if (other.hasModuleId()) {
-        setModuleId(other.moduleId);
+      if (other.hasGachaId()) {
+        setGachaId(other.gachaId);
       }
       return this;
     }
 
     @Override
-    public ActivityScheduleInfo clear() {
+    public FarmStageGachaInfo clear() {
       if (isEmpty()) {
         return this;
       }
@@ -239,13 +193,12 @@ public final class ActivityScheduleInfoOuterClass {
       bitField0_ = 0;
       endTime = 0L;
       beginTime = 0L;
-      activityId = 0;
-      moduleId = 0;
+      gachaId = 0;
       return this;
     }
 
     @Override
-    public ActivityScheduleInfo clearQuick() {
+    public FarmStageGachaInfo clearQuick() {
       if (isEmpty()) {
         return this;
       }
@@ -259,34 +212,29 @@ public final class ActivityScheduleInfoOuterClass {
       if (o == this) {
         return true;
       }
-      if (!(o instanceof ActivityScheduleInfo)) {
+      if (!(o instanceof FarmStageGachaInfo)) {
         return false;
       }
-      ActivityScheduleInfo other = (ActivityScheduleInfo) o;
+      FarmStageGachaInfo other = (FarmStageGachaInfo) o;
       return bitField0_ == other.bitField0_
         && (!hasEndTime() || endTime == other.endTime)
         && (!hasBeginTime() || beginTime == other.beginTime)
-        && (!hasActivityId() || activityId == other.activityId)
-        && (!hasModuleId() || moduleId == other.moduleId);
+        && (!hasGachaId() || gachaId == other.gachaId);
     }
 
     @Override
     public void writeTo(final ProtoSink output) throws IOException {
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeRawByte((byte) 24);
+        output.writeRawByte((byte) 32);
         output.writeInt64NoTag(endTime);
       }
       if ((bitField0_ & 0x00000002) != 0) {
-        output.writeRawByte((byte) 64);
+        output.writeRawByte((byte) 40);
         output.writeInt64NoTag(beginTime);
       }
       if ((bitField0_ & 0x00000004) != 0) {
-        output.writeRawByte((byte) 8);
-        output.writeUInt32NoTag(activityId);
-      }
-      if ((bitField0_ & 0x00000008) != 0) {
-        output.writeRawByte((byte) 40);
-        output.writeUInt32NoTag(moduleId);
+        output.writeRawByte((byte) 24);
+        output.writeUInt32NoTag(gachaId);
       }
     }
 
@@ -300,52 +248,40 @@ public final class ActivityScheduleInfoOuterClass {
         size += 1 + ProtoSink.computeInt64SizeNoTag(beginTime);
       }
       if ((bitField0_ & 0x00000004) != 0) {
-        size += 1 + ProtoSink.computeUInt32SizeNoTag(activityId);
-      }
-      if ((bitField0_ & 0x00000008) != 0) {
-        size += 1 + ProtoSink.computeUInt32SizeNoTag(moduleId);
+        size += 1 + ProtoSink.computeUInt32SizeNoTag(gachaId);
       }
       return size;
     }
 
     @Override
     @SuppressWarnings("fallthrough")
-    public ActivityScheduleInfo mergeFrom(final ProtoSource input) throws IOException {
+    public FarmStageGachaInfo mergeFrom(final ProtoSource input) throws IOException {
       // Enabled Fall-Through Optimization (QuickBuffers)
       int tag = input.readTag();
       while (true) {
         switch (tag) {
-          case 24: {
+          case 32: {
             // endTime
             endTime = input.readInt64();
             bitField0_ |= 0x00000001;
-            tag = input.readTag();
-            if (tag != 64) {
-              break;
-            }
-          }
-          case 64: {
-            // beginTime
-            beginTime = input.readInt64();
-            bitField0_ |= 0x00000002;
-            tag = input.readTag();
-            if (tag != 8) {
-              break;
-            }
-          }
-          case 8: {
-            // activityId
-            activityId = input.readUInt32();
-            bitField0_ |= 0x00000004;
             tag = input.readTag();
             if (tag != 40) {
               break;
             }
           }
           case 40: {
-            // moduleId
-            moduleId = input.readUInt32();
-            bitField0_ |= 0x00000008;
+            // beginTime
+            beginTime = input.readInt64();
+            bitField0_ |= 0x00000002;
+            tag = input.readTag();
+            if (tag != 24) {
+              break;
+            }
+          }
+          case 24: {
+            // gachaId
+            gachaId = input.readUInt32();
+            bitField0_ |= 0x00000004;
             tag = input.readTag();
             if (tag != 0) {
               break;
@@ -375,16 +311,13 @@ public final class ActivityScheduleInfoOuterClass {
         output.writeInt64(FieldNames.beginTime, beginTime);
       }
       if ((bitField0_ & 0x00000004) != 0) {
-        output.writeUInt32(FieldNames.activityId, activityId);
-      }
-      if ((bitField0_ & 0x00000008) != 0) {
-        output.writeUInt32(FieldNames.moduleId, moduleId);
+        output.writeUInt32(FieldNames.gachaId, gachaId);
       }
       output.endObject();
     }
 
     @Override
-    public ActivityScheduleInfo mergeFrom(final JsonSource input) throws IOException {
+    public FarmStageGachaInfo mergeFrom(final JsonSource input) throws IOException {
       if (!input.beginObject()) {
         return this;
       }
@@ -414,24 +347,12 @@ public final class ActivityScheduleInfoOuterClass {
             }
             break;
           }
-          case 2048619658:
-          case -917278645: {
-            if (input.isAtField(FieldNames.activityId)) {
+          case -204751299:
+          case -2052301576: {
+            if (input.isAtField(FieldNames.gachaId)) {
               if (!input.trySkipNullValue()) {
-                activityId = input.readUInt32();
+                gachaId = input.readUInt32();
                 bitField0_ |= 0x00000004;
-              }
-            } else {
-              input.skipUnknownField();
-            }
-            break;
-          }
-          case -604257113:
-          case -1552079922: {
-            if (input.isAtField(FieldNames.moduleId)) {
-              if (!input.trySkipNullValue()) {
-                moduleId = input.readUInt32();
-                bitField0_ |= 0x00000008;
               }
             } else {
               input.skipUnknownField();
@@ -449,8 +370,8 @@ public final class ActivityScheduleInfoOuterClass {
     }
 
     @Override
-    public ActivityScheduleInfo clone() {
-      return new ActivityScheduleInfo().copyFrom(this);
+    public FarmStageGachaInfo clone() {
+      return new FarmStageGachaInfo().copyFrom(this);
     }
 
     @Override
@@ -458,32 +379,32 @@ public final class ActivityScheduleInfoOuterClass {
       return ((bitField0_) == 0);
     }
 
-    public static ActivityScheduleInfo parseFrom(final byte[] data) throws
+    public static FarmStageGachaInfo parseFrom(final byte[] data) throws
         InvalidProtocolBufferException {
-      return ProtoMessage.mergeFrom(new ActivityScheduleInfo(), data).checkInitialized();
+      return ProtoMessage.mergeFrom(new FarmStageGachaInfo(), data).checkInitialized();
     }
 
-    public static ActivityScheduleInfo parseFrom(final ProtoSource input) throws IOException {
-      return ProtoMessage.mergeFrom(new ActivityScheduleInfo(), input).checkInitialized();
+    public static FarmStageGachaInfo parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new FarmStageGachaInfo(), input).checkInitialized();
     }
 
-    public static ActivityScheduleInfo parseFrom(final JsonSource input) throws IOException {
-      return ProtoMessage.mergeFrom(new ActivityScheduleInfo(), input).checkInitialized();
+    public static FarmStageGachaInfo parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new FarmStageGachaInfo(), input).checkInitialized();
     }
 
     /**
-     * @return factory for creating ActivityScheduleInfo messages
+     * @return factory for creating FarmStageGachaInfo messages
      */
-    public static MessageFactory<ActivityScheduleInfo> getFactory() {
-      return ActivityScheduleInfoFactory.INSTANCE;
+    public static MessageFactory<FarmStageGachaInfo> getFactory() {
+      return FarmStageGachaInfoFactory.INSTANCE;
     }
 
-    private enum ActivityScheduleInfoFactory implements MessageFactory<ActivityScheduleInfo> {
+    private enum FarmStageGachaInfoFactory implements MessageFactory<FarmStageGachaInfo> {
       INSTANCE;
 
       @Override
-      public ActivityScheduleInfo create() {
-        return ActivityScheduleInfo.newInstance();
+      public FarmStageGachaInfo create() {
+        return FarmStageGachaInfo.newInstance();
       }
     }
 
@@ -495,9 +416,7 @@ public final class ActivityScheduleInfoOuterClass {
 
       static final FieldName beginTime = FieldName.forField("beginTime", "begin_time");
 
-      static final FieldName activityId = FieldName.forField("activityId", "activity_id");
-
-      static final FieldName moduleId = FieldName.forField("moduleId", "module_id");
+      static final FieldName gachaId = FieldName.forField("gachaId", "gacha_id");
     }
   }
 }

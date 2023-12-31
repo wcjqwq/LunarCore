@@ -12,35 +12,35 @@ import us.hebi.quickbuf.ProtoSink;
 import us.hebi.quickbuf.ProtoSource;
 import us.hebi.quickbuf.RepeatedMessage;
 
-public final class GetActivityScheduleConfigScRspOuterClass {
+public final class GetFarmStageGachaInfoScRspOuterClass {
   /**
-   * Protobuf type {@code GetActivityScheduleConfigScRsp}
+   * Protobuf type {@code GetFarmStageGachaInfoScRsp}
    */
-  public static final class GetActivityScheduleConfigScRsp extends ProtoMessage<GetActivityScheduleConfigScRsp> implements Cloneable {
+  public static final class GetFarmStageGachaInfoScRsp extends ProtoMessage<GetFarmStageGachaInfoScRsp> implements Cloneable {
     private static final long serialVersionUID = 0L;
 
     /**
-     * <code>optional uint32 retcode = 2;</code>
+     * <code>optional uint32 retcode = 12;</code>
      */
     private int retcode;
 
     /**
-     * <code>repeated .ActivityScheduleInfo activity_schedule_list = 10;</code>
+     * <code>repeated .FarmStageGachaInfo farm_stage_gacha_info_list = 10;</code>
      */
-    private final RepeatedMessage<ActivityScheduleInfoOuterClass.ActivityScheduleInfo> activityScheduleList = RepeatedMessage.newEmptyInstance(ActivityScheduleInfoOuterClass.ActivityScheduleInfo.getFactory());
+    private final RepeatedMessage<FarmStageGachaInfoOuterClass.FarmStageGachaInfo> farmStageGachaInfoList = RepeatedMessage.newEmptyInstance(FarmStageGachaInfoOuterClass.FarmStageGachaInfo.getFactory());
 
-    private GetActivityScheduleConfigScRsp() {
+    private GetFarmStageGachaInfoScRsp() {
     }
 
     /**
-     * @return a new empty instance of {@code GetActivityScheduleConfigScRsp}
+     * @return a new empty instance of {@code GetFarmStageGachaInfoScRsp}
      */
-    public static GetActivityScheduleConfigScRsp newInstance() {
-      return new GetActivityScheduleConfigScRsp();
+    public static GetFarmStageGachaInfoScRsp newInstance() {
+      return new GetFarmStageGachaInfoScRsp();
     }
 
     /**
-     * <code>optional uint32 retcode = 2;</code>
+     * <code>optional uint32 retcode = 12;</code>
      * @return whether the retcode field is set
      */
     public boolean hasRetcode() {
@@ -48,17 +48,17 @@ public final class GetActivityScheduleConfigScRspOuterClass {
     }
 
     /**
-     * <code>optional uint32 retcode = 2;</code>
+     * <code>optional uint32 retcode = 12;</code>
      * @return this
      */
-    public GetActivityScheduleConfigScRsp clearRetcode() {
+    public GetFarmStageGachaInfoScRsp clearRetcode() {
       bitField0_ &= ~0x00000001;
       retcode = 0;
       return this;
     }
 
     /**
-     * <code>optional uint32 retcode = 2;</code>
+     * <code>optional uint32 retcode = 12;</code>
      * @return the retcode
      */
     public int getRetcode() {
@@ -66,51 +66,51 @@ public final class GetActivityScheduleConfigScRspOuterClass {
     }
 
     /**
-     * <code>optional uint32 retcode = 2;</code>
+     * <code>optional uint32 retcode = 12;</code>
      * @param value the retcode to set
      * @return this
      */
-    public GetActivityScheduleConfigScRsp setRetcode(final int value) {
+    public GetFarmStageGachaInfoScRsp setRetcode(final int value) {
       bitField0_ |= 0x00000001;
       retcode = value;
       return this;
     }
 
     /**
-     * <code>repeated .ActivityScheduleInfo activity_schedule_list = 10;</code>
-     * @return whether the activityScheduleList field is set
+     * <code>repeated .FarmStageGachaInfo farm_stage_gacha_info_list = 10;</code>
+     * @return whether the farmStageGachaInfoList field is set
      */
-    public boolean hasActivityScheduleList() {
+    public boolean hasFarmStageGachaInfoList() {
       return (bitField0_ & 0x00000002) != 0;
     }
 
     /**
-     * <code>repeated .ActivityScheduleInfo activity_schedule_list = 10;</code>
+     * <code>repeated .FarmStageGachaInfo farm_stage_gacha_info_list = 10;</code>
      * @return this
      */
-    public GetActivityScheduleConfigScRsp clearActivityScheduleList() {
+    public GetFarmStageGachaInfoScRsp clearFarmStageGachaInfoList() {
       bitField0_ &= ~0x00000002;
-      activityScheduleList.clear();
+      farmStageGachaInfoList.clear();
       return this;
     }
 
     /**
-     * <code>repeated .ActivityScheduleInfo activity_schedule_list = 10;</code>
+     * <code>repeated .FarmStageGachaInfo farm_stage_gacha_info_list = 10;</code>
      *
      * This method returns the internal storage object without modifying any has state.
      * The returned object should not be modified and be treated as read-only.
      *
-     * Use {@link #getMutableActivityScheduleList()} if you want to modify it.
+     * Use {@link #getMutableFarmStageGachaInfoList()} if you want to modify it.
      *
      * @return internal storage object for reading
      */
-    public RepeatedMessage<ActivityScheduleInfoOuterClass.ActivityScheduleInfo> getActivityScheduleList(
+    public RepeatedMessage<FarmStageGachaInfoOuterClass.FarmStageGachaInfo> getFarmStageGachaInfoList(
         ) {
-      return activityScheduleList;
+      return farmStageGachaInfoList;
     }
 
     /**
-     * <code>repeated .ActivityScheduleInfo activity_schedule_list = 10;</code>
+     * <code>repeated .FarmStageGachaInfo farm_stage_gacha_info_list = 10;</code>
      *
      * This method returns the internal storage object and sets the corresponding
      * has state. The returned object will become part of this message and its
@@ -118,49 +118,49 @@ public final class GetActivityScheduleConfigScRspOuterClass {
      *
      * @return internal storage object for modifications
      */
-    public RepeatedMessage<ActivityScheduleInfoOuterClass.ActivityScheduleInfo> getMutableActivityScheduleList(
+    public RepeatedMessage<FarmStageGachaInfoOuterClass.FarmStageGachaInfo> getMutableFarmStageGachaInfoList(
         ) {
       bitField0_ |= 0x00000002;
-      return activityScheduleList;
+      return farmStageGachaInfoList;
     }
 
     /**
-     * <code>repeated .ActivityScheduleInfo activity_schedule_list = 10;</code>
-     * @param value the activityScheduleList to add
+     * <code>repeated .FarmStageGachaInfo farm_stage_gacha_info_list = 10;</code>
+     * @param value the farmStageGachaInfoList to add
      * @return this
      */
-    public GetActivityScheduleConfigScRsp addActivityScheduleList(
-        final ActivityScheduleInfoOuterClass.ActivityScheduleInfo value) {
+    public GetFarmStageGachaInfoScRsp addFarmStageGachaInfoList(
+        final FarmStageGachaInfoOuterClass.FarmStageGachaInfo value) {
       bitField0_ |= 0x00000002;
-      activityScheduleList.add(value);
+      farmStageGachaInfoList.add(value);
       return this;
     }
 
     /**
-     * <code>repeated .ActivityScheduleInfo activity_schedule_list = 10;</code>
-     * @param values the activityScheduleList to add
+     * <code>repeated .FarmStageGachaInfo farm_stage_gacha_info_list = 10;</code>
+     * @param values the farmStageGachaInfoList to add
      * @return this
      */
-    public GetActivityScheduleConfigScRsp addAllActivityScheduleList(
-        final ActivityScheduleInfoOuterClass.ActivityScheduleInfo... values) {
+    public GetFarmStageGachaInfoScRsp addAllFarmStageGachaInfoList(
+        final FarmStageGachaInfoOuterClass.FarmStageGachaInfo... values) {
       bitField0_ |= 0x00000002;
-      activityScheduleList.addAll(values);
+      farmStageGachaInfoList.addAll(values);
       return this;
     }
 
     @Override
-    public GetActivityScheduleConfigScRsp copyFrom(final GetActivityScheduleConfigScRsp other) {
+    public GetFarmStageGachaInfoScRsp copyFrom(final GetFarmStageGachaInfoScRsp other) {
       cachedSize = other.cachedSize;
       if ((bitField0_ | other.bitField0_) != 0) {
         bitField0_ = other.bitField0_;
         retcode = other.retcode;
-        activityScheduleList.copyFrom(other.activityScheduleList);
+        farmStageGachaInfoList.copyFrom(other.farmStageGachaInfoList);
       }
       return this;
     }
 
     @Override
-    public GetActivityScheduleConfigScRsp mergeFrom(final GetActivityScheduleConfigScRsp other) {
+    public GetFarmStageGachaInfoScRsp mergeFrom(final GetFarmStageGachaInfoScRsp other) {
       if (other.isEmpty()) {
         return this;
       }
@@ -168,32 +168,32 @@ public final class GetActivityScheduleConfigScRspOuterClass {
       if (other.hasRetcode()) {
         setRetcode(other.retcode);
       }
-      if (other.hasActivityScheduleList()) {
-        getMutableActivityScheduleList().addAll(other.activityScheduleList);
+      if (other.hasFarmStageGachaInfoList()) {
+        getMutableFarmStageGachaInfoList().addAll(other.farmStageGachaInfoList);
       }
       return this;
     }
 
     @Override
-    public GetActivityScheduleConfigScRsp clear() {
+    public GetFarmStageGachaInfoScRsp clear() {
       if (isEmpty()) {
         return this;
       }
       cachedSize = -1;
       bitField0_ = 0;
       retcode = 0;
-      activityScheduleList.clear();
+      farmStageGachaInfoList.clear();
       return this;
     }
 
     @Override
-    public GetActivityScheduleConfigScRsp clearQuick() {
+    public GetFarmStageGachaInfoScRsp clearQuick() {
       if (isEmpty()) {
         return this;
       }
       cachedSize = -1;
       bitField0_ = 0;
-      activityScheduleList.clearQuick();
+      farmStageGachaInfoList.clearQuick();
       return this;
     }
 
@@ -202,25 +202,25 @@ public final class GetActivityScheduleConfigScRspOuterClass {
       if (o == this) {
         return true;
       }
-      if (!(o instanceof GetActivityScheduleConfigScRsp)) {
+      if (!(o instanceof GetFarmStageGachaInfoScRsp)) {
         return false;
       }
-      GetActivityScheduleConfigScRsp other = (GetActivityScheduleConfigScRsp) o;
+      GetFarmStageGachaInfoScRsp other = (GetFarmStageGachaInfoScRsp) o;
       return bitField0_ == other.bitField0_
         && (!hasRetcode() || retcode == other.retcode)
-        && (!hasActivityScheduleList() || activityScheduleList.equals(other.activityScheduleList));
+        && (!hasFarmStageGachaInfoList() || farmStageGachaInfoList.equals(other.farmStageGachaInfoList));
     }
 
     @Override
     public void writeTo(final ProtoSink output) throws IOException {
       if ((bitField0_ & 0x00000001) != 0) {
-        output.writeRawByte((byte) 16);
+        output.writeRawByte((byte) 96);
         output.writeUInt32NoTag(retcode);
       }
       if ((bitField0_ & 0x00000002) != 0) {
-        for (int i = 0; i < activityScheduleList.length(); i++) {
+        for (int i = 0; i < farmStageGachaInfoList.length(); i++) {
           output.writeRawByte((byte) 82);
-          output.writeMessageNoTag(activityScheduleList.get(i));
+          output.writeMessageNoTag(farmStageGachaInfoList.get(i));
         }
       }
     }
@@ -232,19 +232,19 @@ public final class GetActivityScheduleConfigScRspOuterClass {
         size += 1 + ProtoSink.computeUInt32SizeNoTag(retcode);
       }
       if ((bitField0_ & 0x00000002) != 0) {
-        size += (1 * activityScheduleList.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(activityScheduleList);
+        size += (1 * farmStageGachaInfoList.length()) + ProtoSink.computeRepeatedMessageSizeNoTag(farmStageGachaInfoList);
       }
       return size;
     }
 
     @Override
     @SuppressWarnings("fallthrough")
-    public GetActivityScheduleConfigScRsp mergeFrom(final ProtoSource input) throws IOException {
+    public GetFarmStageGachaInfoScRsp mergeFrom(final ProtoSource input) throws IOException {
       // Enabled Fall-Through Optimization (QuickBuffers)
       int tag = input.readTag();
       while (true) {
         switch (tag) {
-          case 16: {
+          case 96: {
             // retcode
             retcode = input.readUInt32();
             bitField0_ |= 0x00000001;
@@ -254,8 +254,8 @@ public final class GetActivityScheduleConfigScRspOuterClass {
             }
           }
           case 82: {
-            // activityScheduleList
-            tag = input.readRepeatedMessage(activityScheduleList, tag);
+            // farmStageGachaInfoList
+            tag = input.readRepeatedMessage(farmStageGachaInfoList, tag);
             bitField0_ |= 0x00000002;
             if (tag != 0) {
               break;
@@ -282,13 +282,13 @@ public final class GetActivityScheduleConfigScRspOuterClass {
         output.writeUInt32(FieldNames.retcode, retcode);
       }
       if ((bitField0_ & 0x00000002) != 0) {
-        output.writeRepeatedMessage(FieldNames.activityScheduleList, activityScheduleList);
+        output.writeRepeatedMessage(FieldNames.farmStageGachaInfoList, farmStageGachaInfoList);
       }
       output.endObject();
     }
 
     @Override
-    public GetActivityScheduleConfigScRsp mergeFrom(final JsonSource input) throws IOException {
+    public GetFarmStageGachaInfoScRsp mergeFrom(final JsonSource input) throws IOException {
       if (!input.beginObject()) {
         return this;
       }
@@ -305,11 +305,11 @@ public final class GetActivityScheduleConfigScRspOuterClass {
             }
             break;
           }
-          case -1397638012:
-          case -1123181546: {
-            if (input.isAtField(FieldNames.activityScheduleList)) {
+          case 981089926:
+          case 758978696: {
+            if (input.isAtField(FieldNames.farmStageGachaInfoList)) {
               if (!input.trySkipNullValue()) {
-                input.readRepeatedMessage(activityScheduleList);
+                input.readRepeatedMessage(farmStageGachaInfoList);
                 bitField0_ |= 0x00000002;
               }
             } else {
@@ -328,8 +328,8 @@ public final class GetActivityScheduleConfigScRspOuterClass {
     }
 
     @Override
-    public GetActivityScheduleConfigScRsp clone() {
-      return new GetActivityScheduleConfigScRsp().copyFrom(this);
+    public GetFarmStageGachaInfoScRsp clone() {
+      return new GetFarmStageGachaInfoScRsp().copyFrom(this);
     }
 
     @Override
@@ -337,34 +337,32 @@ public final class GetActivityScheduleConfigScRspOuterClass {
       return ((bitField0_) == 0);
     }
 
-    public static GetActivityScheduleConfigScRsp parseFrom(final byte[] data) throws
+    public static GetFarmStageGachaInfoScRsp parseFrom(final byte[] data) throws
         InvalidProtocolBufferException {
-      return ProtoMessage.mergeFrom(new GetActivityScheduleConfigScRsp(), data).checkInitialized();
+      return ProtoMessage.mergeFrom(new GetFarmStageGachaInfoScRsp(), data).checkInitialized();
     }
 
-    public static GetActivityScheduleConfigScRsp parseFrom(final ProtoSource input) throws
-        IOException {
-      return ProtoMessage.mergeFrom(new GetActivityScheduleConfigScRsp(), input).checkInitialized();
+    public static GetFarmStageGachaInfoScRsp parseFrom(final ProtoSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new GetFarmStageGachaInfoScRsp(), input).checkInitialized();
     }
 
-    public static GetActivityScheduleConfigScRsp parseFrom(final JsonSource input) throws
-        IOException {
-      return ProtoMessage.mergeFrom(new GetActivityScheduleConfigScRsp(), input).checkInitialized();
+    public static GetFarmStageGachaInfoScRsp parseFrom(final JsonSource input) throws IOException {
+      return ProtoMessage.mergeFrom(new GetFarmStageGachaInfoScRsp(), input).checkInitialized();
     }
 
     /**
-     * @return factory for creating GetActivityScheduleConfigScRsp messages
+     * @return factory for creating GetFarmStageGachaInfoScRsp messages
      */
-    public static MessageFactory<GetActivityScheduleConfigScRsp> getFactory() {
-      return GetActivityScheduleConfigScRspFactory.INSTANCE;
+    public static MessageFactory<GetFarmStageGachaInfoScRsp> getFactory() {
+      return GetFarmStageGachaInfoScRspFactory.INSTANCE;
     }
 
-    private enum GetActivityScheduleConfigScRspFactory implements MessageFactory<GetActivityScheduleConfigScRsp> {
+    private enum GetFarmStageGachaInfoScRspFactory implements MessageFactory<GetFarmStageGachaInfoScRsp> {
       INSTANCE;
 
       @Override
-      public GetActivityScheduleConfigScRsp create() {
-        return GetActivityScheduleConfigScRsp.newInstance();
+      public GetFarmStageGachaInfoScRsp create() {
+        return GetFarmStageGachaInfoScRsp.newInstance();
       }
     }
 
@@ -374,7 +372,7 @@ public final class GetActivityScheduleConfigScRspOuterClass {
     static class FieldNames {
       static final FieldName retcode = FieldName.forField("retcode");
 
-      static final FieldName activityScheduleList = FieldName.forField("activityScheduleList", "activity_schedule_list");
+      static final FieldName farmStageGachaInfoList = FieldName.forField("farmStageGachaInfoList", "farm_stage_gacha_info_list");
     }
   }
 }
