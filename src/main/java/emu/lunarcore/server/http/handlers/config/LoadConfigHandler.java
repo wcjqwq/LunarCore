@@ -1,5 +1,6 @@
 package emu.lunarcore.server.http.handlers.config;
 
+import emu.lunarcore.LunarCore;
 import emu.lunarcore.server.http.objects.config.LoadConfigResJson;
 import emu.lunarcore.util.JsonUtils;
 import io.javalin.http.ContentType;

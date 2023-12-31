@@ -1,5 +1,7 @@
 package emu.lunarcore.server.http;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -8,6 +10,8 @@ import emu.lunarcore.server.http.handlers.announce.GetAnnContentHandler;
 import emu.lunarcore.server.http.handlers.announce.GetAnnListhandler;
 import emu.lunarcore.server.http.handlers.config.GetConfigHandler;
 import emu.lunarcore.server.http.handlers.config.LoadConfigHandler;
+import io.javalin.plugin.bundled.CorsPlugin;
+import io.javalin.plugin.bundled.CorsPluginConfig;
 import org.eclipse.jetty.server.HttpConfiguration;
 import org.eclipse.jetty.server.HttpConnectionFactory;
 import org.eclipse.jetty.server.SecureRequestCustomizer;
@@ -38,12 +42,16 @@ public class HttpServer {
     private Object2ObjectMap<String, RegionInfo> regions;
     private String regionList;
 
+
     public HttpServer(ServerType type) {
         this.type = type;
-        this.app = Javalin.create();
+        this.app = Javalin.create(config -> config.plugins.enableCors
+            (cors -> cors.add(CorsPluginConfig::anyHost)));
+        app.before(ctx -> ctx.header("Access-Control-Allow-Origin", "*"));
+        app.before(ctx -> ctx.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS"));
+        app.before(ctx -> ctx.header("Access-Control-Allow-Headers", "Content-Type"));
         this.modes = new LinkedList<>();
         this.regions = new Object2ObjectOpenHashMap<>();
-
         this.addRoutes();
     }
 
@@ -165,12 +173,35 @@ public class HttpServer {
     private void addConfigRoutes() {
         // === Config ===
         getApp().get("/hkrpg_global/combo/granter/api/getConfig", new GetConfigHandler());
-        //getApp().get("/hkrpg_global/mdk/shield/api/loadConfig", new HttpJsonResponse("{\"retcode\":0,\"message\":\"OK\",\"data\":{\"id\":24,\"game_key\":\"hkrpg_global\",\"client\":\"PC\",\"identity\":\"I_IDENTITY\",\"guest\":false,\"ignore_versions\":\"\",\"scene\":\"S_NORMAL\",\"name\":\"崩�??RPG\",\"disable_regist\":false,\"enable_email_captcha\":false,\"thirdparty\":[\"fb\",\"tw\",\"gl\",\"ap\"],\"disable_mmt\":false,\"server_guest\":false,\"thirdparty_ignore\":{},\"enable_ps_bind_account\":false,\"thirdparty_login_configs\":{\"tw\":{\"token_type\":\"TK_GAME_TOKEN\",\"game_token_expires_in\":2592000},\"ap\":{\"token_type\":\"TK_GAME_TOKEN\",\"game_token_expires_in\":604800},\"fb\":{\"token_type\":\"TK_GAME_TOKEN\",\"game_token_expires_in\":2592000},\"gl\":{\"token_type\":\"TK_GAME_TOKEN\",\"game_token_expires_in\":604800}},\"initialize_firebase\":false,\"bbs_auth_login\":false,\"bbs_auth_login_ignore\":[],\"fetch_instance_id\":false,\"enable_flash_login\":false}}"));
         getApp().get("/hkrpg_global/mdk/shield/api/loadConfig", new LoadConfigHandler());
         // Add mode
         this.modes.add("CONFIG");
     }
     private void addAnnounceRoutes(){
+        getApp().get("/hkrpg/announcement/index.html",ctx -> {
+            // 读取index.html文件的内容并返回给客户端
+            Path indexPath = Paths.get("src/main/resources/staticfiles/index.html");
+            String htmlContent = new String(java.nio.file.Files.readAllBytes(indexPath));
+            ctx.result(htmlContent).contentType("text/html");
+        });
+        getApp().get("/hkrpg/announcement/js/*",ctx -> {
+            // 读取index.html文件的内容并返回给客户端
+            Path indexPath = Paths.get("src/main/resources/staticfiles/js/*");
+            String htmlContent = new String(java.nio.file.Files.readAllBytes(indexPath));
+            ctx.result(htmlContent).contentType("application/javascript");
+        });
+        getApp().get("/hkrpg/announcement/css/*",ctx -> {
+            // 读取index.html文件的内容并返回给客户端
+            Path indexPath = Paths.get("src/main/resources/staticfiles/css/*");
+            String htmlContent = new String(java.nio.file.Files.readAllBytes(indexPath));
+            ctx.result(htmlContent).contentType("text/css; charset=utf-8");
+        });
+        getApp().get("/hkrpg/announcement/jpg/*",ctx -> {
+            // 读取index.html文件的内容并返回给客户端
+            Path indexPath = Paths.get("src/main/resources/staticfiles/jpg/*");
+            String htmlContent = new String(java.nio.file.Files.readAllBytes(indexPath));
+            ctx.result(htmlContent).contentType("image/webp");
+        });
         getApp().get("/hkrpg_cn/announcement/api/getAnnList", new GetAnnListhandler());
         getApp().get("/hkrpg_cn/announcement/api/getAnnContent", new GetAnnContentHandler());
         this.modes.add("ANNOUNCE");
