@@ -1,16 +1,13 @@
-package emu.lunarcore.server.http.handlers.Announce;
+package emu.lunarcore.server.http.handlers.announce;
 
-import emu.lunarcore.server.http.objects.Announce.GetAnnListResJson;
+import emu.lunarcore.server.http.objects.announce.GetAnnListResJson;
 import emu.lunarcore.util.JsonUtils;
 import io.javalin.http.*;
 import org.jetbrains.annotations.NotNull;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
-import org.jetbrains.annotations.NotNull;
-import emu.lunarcore.server.http.objects.Announce.GetAnnListResJson.*;
 
 import java.util.Collections;
-import java.util.List;
 
 public class GetAnnListhandler implements Handler {
     public GetAnnListhandler(){

@@ -1,17 +1,14 @@
-package emu.lunarcore.server.http.handlers.Config;
+package emu.lunarcore.server.http.handlers.config;
 
-import emu.lunarcore.server.http.objects.Config.LoadConfigResJson;
+import emu.lunarcore.server.http.objects.config.LoadConfigResJson;
 import emu.lunarcore.util.JsonUtils;
 import io.javalin.http.ContentType;
 import io.javalin.http.Context;
 import io.javalin.http.Handler;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.AbstractMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class LoadConfigHandler implements Handler {
     public LoadConfigHandler(){
@@ -39,9 +36,9 @@ public class LoadConfigHandler implements Handler {
         res.data.thirdparty_ignore = Map.of();
         res.data.enable_ps_bind_account = false;
 
-//        res.data.thirdparty_login_configs = List.of(
-//            new AbstractMap.SimpleEntry<>("tw", new LoadConfigResJson.ThirdpartyLoginConfig().token_type = "")
-//        ).stream().collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+/*        res.data.thirdparty_login_configs = List.of(
+            new AbstractMap.SimpleEntry<>("tw", new LoadConfigResJson.ThirdpartyLoginConfig().token_type = "")
+        ).stream().collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));*/
 
         res.data.initialize_firebase = false;
         res.data.bbs_auth_login = false;

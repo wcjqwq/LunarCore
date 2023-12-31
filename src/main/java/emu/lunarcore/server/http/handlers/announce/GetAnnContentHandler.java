@@ -1,6 +1,6 @@
-package emu.lunarcore.server.http.handlers.Announce;
+package emu.lunarcore.server.http.handlers.announce;
 
-import emu.lunarcore.server.http.objects.Announce.GetAnnContentResJson;
+import emu.lunarcore.server.http.objects.announce.GetAnnContentResJson;
 import emu.lunarcore.util.JsonUtils;
 import io.javalin.http.ContentType;
 import io.javalin.http.Context;

@@ -1,4 +1,4 @@
-package emu.lunarcore.server.http.objects.Config;
+package emu.lunarcore.server.http.objects.config;
 import java.util.List;
 import java.util.Map;
 public class LoadConfigResJson {

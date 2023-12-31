@@ -1,4 +1,4 @@
-package emu.lunarcore.server.http.objects.Announce;
+package emu.lunarcore.server.http.objects.announce;
 
 import java.util.List;
 

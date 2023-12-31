@@ -4,11 +4,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import emu.lunarcore.server.http.handlers.Announce.GetAnnContentHandler;
-import emu.lunarcore.server.http.handlers.Announce.GetAnnListhandler;
-import emu.lunarcore.server.http.handlers.Config.GetConfigHandler;
-import emu.lunarcore.server.http.handlers.Config.LoadConfigHandler;
-import io.javalin.http.Handler;
+import emu.lunarcore.server.http.handlers.announce.GetAnnContentHandler;
+import emu.lunarcore.server.http.handlers.announce.GetAnnListhandler;
+import emu.lunarcore.server.http.handlers.config.GetConfigHandler;
+import emu.lunarcore.server.http.handlers.config.LoadConfigHandler;
 import org.eclipse.jetty.server.HttpConfiguration;
 import org.eclipse.jetty.server.HttpConnectionFactory;
 import org.eclipse.jetty.server.SecureRequestCustomizer;
