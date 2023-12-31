@@ -69,7 +69,7 @@ public class LunarCore {
 
         // Load commands
         LunarCore.commandManager = new CommandManager();
-        
+
         // Load plugin manager
         LunarCore.pluginManager = new PluginManager();
 
@@ -135,7 +135,7 @@ public class LunarCore {
         } catch (Exception exception) {
             LunarCore.getLogger().error("Unable to start the game server.", exception);
         }
-        
+
         // Hook into shutdown event
         Runtime.getRuntime().addShutdownHook(new Thread(LunarCore::onShutdown));
 
@@ -183,12 +183,12 @@ public class LunarCore {
         } catch (Exception e) {
             // Ignored
         }
-        
+
         // Sanity check
         if (LunarCore.getConfig() == null) {
             LunarCore.config = new Config();
         }
-        
+
         // Save config
         LunarCore.saveConfig();
     }
@@ -203,7 +203,7 @@ public class LunarCore {
     }
 
     // Build Config
-    
+
     private static String getJarVersion() {
         // Safely get the build config class without errors even if it hasnt been generated yet
         try {
@@ -212,29 +212,29 @@ public class LunarCore {
         } catch (Exception e) {
             // Ignored
         }
-        
+
         return "";
     }
 
     private static String getGitHash() {
         // Use a string builder in case one of the build config fields are missing
         StringBuilder builder = new StringBuilder();
-        
+
         // Safely get the build config class without errors even if it hasnt been generated yet
         try {
             SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
             Class<?> buildConfig = Class.forName(LunarCore.class.getPackageName() + ".BuildConfig");
-            
+
             String hash = buildConfig.getField("GIT_HASH").get(null).toString();
             builder.append(hash);
-            
+
             String timestamp = buildConfig.getField("GIT_TIMESTAMP").get(null).toString();
             long time = Long.parseLong(timestamp) * 1000;
             builder.append(" (" + sf.format(new Date(time)) + ")");
         } catch (Exception e) {
             // Ignored
         }
-        
+
         if (builder.isEmpty()) {
             return "";
         } else {

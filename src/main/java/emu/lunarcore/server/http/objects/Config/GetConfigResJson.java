@@ -1,4 +1,4 @@
-package emu.lunarcore.server.http.objects;
+package emu.lunarcore.server.http.objects.Config;
 
 public class GetConfigResJson {
     public int retcode;

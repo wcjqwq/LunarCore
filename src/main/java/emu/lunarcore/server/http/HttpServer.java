@@ -4,7 +4,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import emu.lunarcore.server.http.handlers.Announce.GetAnnContentHandler;
+import emu.lunarcore.server.http.handlers.Announce.GetAnnListhandler;
 import emu.lunarcore.server.http.handlers.Config.GetConfigHandler;
+import emu.lunarcore.server.http.handlers.Config.LoadConfigHandler;
 import io.javalin.http.Handler;
 import org.eclipse.jetty.server.HttpConfiguration;
 import org.eclipse.jetty.server.HttpConnectionFactory;
@@ -133,6 +136,7 @@ public class HttpServer {
             this.addAuthRoutes();
             this.addConfigRoutes();
             this.addExtraRoutes();
+            this.addAnnounceRoutes();
         }
 //        if (this.getType().runGame()) {
 //            this.addDispatchRoutes();
@@ -161,12 +165,16 @@ public class HttpServer {
     }
     private void addConfigRoutes() {
         // === Config ===
-        //getApp().get("/hkrpg_global/combo/granter/api/getConfig", (Handler) new GetConfigHandler());
         getApp().get("/hkrpg_global/combo/granter/api/getConfig", new GetConfigHandler());
-            //"{\"retcode\":0,\"message\":\"OK\",\"data\":{\"protocol\":true,\"qr_enabled\":false,\"log_level\":\"INFO\",\"announce_url\":\"\",\"push_alias_type\":0,\"disable_ysdk_guard\":true,\"enable_announce_pic_popup\":false,\"app_name\":\"崩�??RPG\",\"qr_enabled_apps\":{\"bbs\":false,\"cloud\":false},\"qr_app_icons\":{\"app\":\"\",\"bbs\":\"\",\"cloud\":\"\"},\"qr_cloud_display_name\":\"\",\"enable_user_center\":true,\"functional_switch_configs\":{}}}"));
-        getApp().get("/hkrpg_global/mdk/shield/api/loadConfig", new HttpJsonResponse("{\"retcode\":0,\"message\":\"OK\",\"data\":{\"id\":24,\"game_key\":\"hkrpg_global\",\"client\":\"PC\",\"identity\":\"I_IDENTITY\",\"guest\":false,\"ignore_versions\":\"\",\"scene\":\"S_NORMAL\",\"name\":\"崩�??RPG\",\"disable_regist\":false,\"enable_email_captcha\":false,\"thirdparty\":[\"fb\",\"tw\",\"gl\",\"ap\"],\"disable_mmt\":false,\"server_guest\":false,\"thirdparty_ignore\":{},\"enable_ps_bind_account\":false,\"thirdparty_login_configs\":{\"tw\":{\"token_type\":\"TK_GAME_TOKEN\",\"game_token_expires_in\":2592000},\"ap\":{\"token_type\":\"TK_GAME_TOKEN\",\"game_token_expires_in\":604800},\"fb\":{\"token_type\":\"TK_GAME_TOKEN\",\"game_token_expires_in\":2592000},\"gl\":{\"token_type\":\"TK_GAME_TOKEN\",\"game_token_expires_in\":604800}},\"initialize_firebase\":false,\"bbs_auth_login\":false,\"bbs_auth_login_ignore\":[],\"fetch_instance_id\":false,\"enable_flash_login\":false}}"));
+        //getApp().get("/hkrpg_global/mdk/shield/api/loadConfig", new HttpJsonResponse("{\"retcode\":0,\"message\":\"OK\",\"data\":{\"id\":24,\"game_key\":\"hkrpg_global\",\"client\":\"PC\",\"identity\":\"I_IDENTITY\",\"guest\":false,\"ignore_versions\":\"\",\"scene\":\"S_NORMAL\",\"name\":\"崩�??RPG\",\"disable_regist\":false,\"enable_email_captcha\":false,\"thirdparty\":[\"fb\",\"tw\",\"gl\",\"ap\"],\"disable_mmt\":false,\"server_guest\":false,\"thirdparty_ignore\":{},\"enable_ps_bind_account\":false,\"thirdparty_login_configs\":{\"tw\":{\"token_type\":\"TK_GAME_TOKEN\",\"game_token_expires_in\":2592000},\"ap\":{\"token_type\":\"TK_GAME_TOKEN\",\"game_token_expires_in\":604800},\"fb\":{\"token_type\":\"TK_GAME_TOKEN\",\"game_token_expires_in\":2592000},\"gl\":{\"token_type\":\"TK_GAME_TOKEN\",\"game_token_expires_in\":604800}},\"initialize_firebase\":false,\"bbs_auth_login\":false,\"bbs_auth_login_ignore\":[],\"fetch_instance_id\":false,\"enable_flash_login\":false}}"));
+        getApp().get("/hkrpg_global/mdk/shield/api/loadConfig", new LoadConfigHandler());
         // Add mode
         this.modes.add("CONFIG");
+    }
+    private void addAnnounceRoutes(){
+        getApp().get("/hkrpg_cn/announcement/api/getAnnList", new GetAnnListhandler());
+        getApp().get("/hkrpg_cn/announcement/api/getAnnContent", new GetAnnContentHandler());
+        this.modes.add("ANNOUNCE");
     }
     private void addExtraRoutes() {
         // === EXTRA ===

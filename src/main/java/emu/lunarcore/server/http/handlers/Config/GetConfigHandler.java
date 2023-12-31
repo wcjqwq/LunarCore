@@ -1,8 +1,6 @@
 package emu.lunarcore.server.http.handlers.Config;
 
-import emu.lunarcore.LunarCore;
-import emu.lunarcore.server.http.objects.ComboTokenResJson;
-import emu.lunarcore.server.http.objects.GetConfigResJson;
+import emu.lunarcore.server.http.objects.Config.GetConfigResJson;
 import emu.lunarcore.util.JsonUtils;
 import io.javalin.http.ContentType;
 import io.javalin.http.Context;
@@ -18,6 +16,7 @@ public class GetConfigHandler implements Handler {
         GetConfigResJson res = new GetConfigResJson();
         res.retcode = 0;
         res.message = "OK";
+        res.data = new GetConfigResJson.Data();
         res.data.protocol = true;
         res.data.qr_enabled = false;
         res.data.log_level = "INFO";
@@ -26,8 +25,10 @@ public class GetConfigHandler implements Handler {
         res.data.disable_ysdk_guard = true;
         res.data.enable_announce_pic_popup = false;
         res.data.app_name = "BHRPG";
+        res.data.qr_enabled_apps = new GetConfigResJson.QREnabledApps();
         res.data.qr_enabled_apps.bbs = false;
         res.data.qr_enabled_apps.cloud = false;
+        res.data.qr_app_icons = new GetConfigResJson.QREnabledAppsIcons();
         res.data.qr_app_icons.app = "";
         res.data.qr_app_icons.bbs = "";
         res.data.qr_app_icons.cloud = "";
