@@ -7,8 +7,11 @@ import io.javalin.http.Context;
 import io.javalin.http.Handler;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.AbstractMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class LoadConfigHandler implements Handler {
     public LoadConfigHandler(){
@@ -36,9 +39,11 @@ public class LoadConfigHandler implements Handler {
         res.data.thirdparty_ignore = Map.of();
         res.data.enable_ps_bind_account = false;
 
-/*        res.data.thirdparty_login_configs = List.of(
-            new AbstractMap.SimpleEntry<>("tw", new LoadConfigResJson.ThirdpartyLoginConfig().token_type = "")
-        ).stream().collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));*/
+        var entry =  new AbstractMap.SimpleEntry<>("tw", new LoadConfigResJson.ThirdpartyLoginConfig());
+        var entryStream = Stream.of(entry);
+        var convertedMap =
+            Collectors.toMap(Map.Entry<String, LoadConfigResJson.ThirdpartyLoginConfig>::getKey, Map.Entry::getValue);
+        res.data.thirdparty_login_configs = entryStream.collect(convertedMap);
 
         res.data.initialize_firebase = false;
         res.data.bbs_auth_login = false;

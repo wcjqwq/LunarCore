@@ -26,6 +26,9 @@ public class GetAnnListResJson {
         public List<InnerAnnouncement> list;
         public int type_id;
         public String type_label;
+        public static AnnouncementList createEmpty() {
+            return new AnnouncementList();
+        }
     }
 
     public static class InnerAnnouncement {

@@ -31,7 +31,7 @@ public class LoadConfigResJson {
     }
 
     public static class ThirdpartyLoginConfig {
-        public String token_type;
+        public String token_type = "";
         public int game_token_expires_in;
     }
 }
